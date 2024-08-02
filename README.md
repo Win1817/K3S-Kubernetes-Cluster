@@ -50,6 +50,7 @@ kubectl get nodes
 This should display the nodes in your Kubernetes cluster.
 
 License
+
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 Contributing
