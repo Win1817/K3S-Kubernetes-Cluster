@@ -66,11 +66,25 @@ sudo systemctl enable k3s
 echo "Verifying the installation..."
 systemctl status k3s
 
+# Wait for K3s to initialize and create necessary files
+echo "Waiting for K3s to initialize..."
+sleep 30
+
 # Set up kubeconfig
 echo "Setting up kubeconfig..."
-sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
-export KUBECONFIG=~/.kube/config
+if [ -f /etc/rancher/k3s/k3s.yaml ]; then
+  sudo mkdir -p ~/.kube
+  sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+  sudo chown $(id -u):$(id -g) ~/.kube/config
+  export KUBECONFIG=~/.kube/config
+else
+  echo "k3s.yaml not found, please check K3s installation."
+fi
 
 # Display node token
 echo "K3s node token:"
-sudo cat /var/lib/rancher/k3s/server/node-token
+if [ -f /var/lib/rancher/k3s/server/node-token ]; then
+  sudo cat /var/lib/rancher/k3s/server/node-token
+else
+  echo "node-token not found, please check K3s installation."
+fi
