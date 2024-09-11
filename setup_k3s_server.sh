@@ -1,9 +1,30 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 # Define variables
 K3S_VERSION="v1.28.12-rc1+k3s1"
 K3S_URL="https://github.com/k3s-io/k3s/releases/download/${K3S_VERSION}/k3s"
 SERVICE_FILE="/etc/systemd/system/k3s.service"
+
+# Check if kubectl is installed
+echo "Checking if kubectl is installed..."
+if ! command -v kubectl &> /dev/null; then
+  echo "kubectl not found. Installing kubectl..."
+  
+  # Install kubectl
+  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+  echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+
+  # Move kubectl to /usr/local/bin
+  sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+  echo "kubectl installed successfully."
+else
+  echo "kubectl is already installed."
+fi
+
+# Proceed with K3s installation
+echo "Proceeding with K3s installation..."
 
 # Prompt for K3s server options
 read -p "Enter the K3s server IP (e.g., 10.245.0.8): " SERVER_IP
