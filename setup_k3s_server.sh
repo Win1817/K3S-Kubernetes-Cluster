@@ -89,23 +89,25 @@ systemctl status k3s
 
 # Wait for K3s to initialize and create necessary files
 echo "Waiting for K3s to initialize..."
-sleep 30
+for i in {1..10}; do
+  if sudo [ -f /var/lib/rancher/k3s/server/node-token ]; then
+    echo "K3s node token:"
+    sudo cat /var/lib/rancher/k3s/server/node-token
+    break
+  else
+    echo "node-token not found, retrying in 10 seconds..."
+    sleep 10
+  fi
+done
 
 # Set up kubeconfig
 echo "Setting up kubeconfig..."
-if [ -f /etc/rancher/k3s/k3s.yaml ]; then
+if sudo [ -f /etc/rancher/k3s/k3s.yaml ]; then
   sudo mkdir -p ~/.kube
   sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
   sudo chown $(id -u):$(id -g) ~/.kube/config
   export KUBECONFIG=~/.kube/config
+  echo "Kubeconfig set up successfully."
 else
   echo "k3s.yaml not found, please check K3s installation."
-fi
-
-# Display node token
-echo "K3s node token:"
-if [ -f /var/lib/rancher/k3s/server/node-token ]; then
-  sudo cat /var/lib/rancher/k3s/server/node-token
-else
-  echo "node-token not found, please check K3s installation."
 fi
