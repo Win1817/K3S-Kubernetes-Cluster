@@ -29,6 +29,7 @@ cd K3S-Kubernetes-Cluster
 ### 2. Setup K3s Server
 Run the setup_k3s_server.sh script to install and configure the K3s server:
 ````bash
+sed -i 's/\r$//' setup_k3s_server.sh
 chmod +x setup_k3s_server.sh
 ./setup_k3s_server.sh
 ````
@@ -36,6 +37,7 @@ chmod +x setup_k3s_server.sh
 ### 3. Setup K3s Agent
 Run the setup_k3s_agent.sh script on each agent node to join it to the K3s server:
 ````bash
+sed -i 's/\r$//' setup_k3s_agent.sh
 chmod +x setup_k3s_agent.sh
 ./setup_k3s_agent.sh
 ````
