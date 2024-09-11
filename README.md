@@ -55,7 +55,7 @@ This should display the nodes in your Kubernetes cluster.
 Run the setup_rancher.sh script to install and configure the rancher server:
 ````bash
 sed -i 's/\r$//' setup_rancher.sh
-chmod +x setup_rancher.shh
+chmod +x setup_rancher.sh
 ./setup_rancher.sh
 ````
 
