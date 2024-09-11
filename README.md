@@ -51,12 +51,12 @@ kubectl get nodes
 
 This should display the nodes in your Kubernetes cluster.
 
-License
+### License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-Contributing
+### Contributing
 If you would like to contribute to this project, please fork the repository and submit a pull request.
 
-Issues
+### Issues
 If you encounter any issues or have any questions, please open an issue in this repository.
