@@ -32,9 +32,6 @@ read -p "Enter the K3s token (optional, leave empty for auto-generation): " TOKE
 
 # Add K3S
 echo "Downloading K3s..."
-cd
-mkdir -p Kubernetes-Project
-cd Kubernetes-Project
 curl -LO "$K3S_URL"
 chmod +x k3s
 sudo mv k3s /usr/local/bin/
