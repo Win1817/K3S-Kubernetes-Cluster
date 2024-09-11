@@ -2,7 +2,7 @@
 
 This repository contains scripts and configurations for setting up a lightweight Kubernetes cluster using K3s. The repository includes scripts to automate the installation and configuration of both K3s servers and agents, making it easy to deploy and manage a K3s cluster.
 
-## Key Features
+# Key Features
 
 - Automated K3s server and agent installation and configuration
 - Customizable server IP and token
@@ -10,13 +10,13 @@ This repository contains scripts and configurations for setting up a lightweight
 - Easy setup of kubeconfig for `kubectl`
 - Display of K3s node token for joining additional nodes
 
-## Prerequisites
+# Prerequisites
 
 - A Linux machine with `curl` installed
 - Sudo privileges on the machine
 - Internet connection to download K3s
 
-## Setup Instructions
+# Setup Instructions
 
 ### 1. Clone the Repository
 
@@ -51,12 +51,20 @@ kubectl get nodes
 
 This should display the nodes in your Kubernetes cluster.
 
-### License
+### 4. Setup Rancher Server
+Run the setup_rancher.sh script to install and configure the rancher server:
+````bash
+sed -i 's/\r$//' setup_rancher.sh
+chmod +x setup_rancher.shh
+./setup_rancher.sh
+````
+
+# License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-### Contributing
+# Contributing
 If you would like to contribute to this project, please fork the repository and submit a pull request.
 
-### Issues
+# Issues
 If you encounter any issues or have any questions, please open an issue in this repository.
