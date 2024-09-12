@@ -58,6 +58,20 @@ sed -i 's/\r$//' setup_rancher.sh
 chmod +x setup_rancher.sh
 ./setup_rancher.sh
 ````
+### 5. Uninstall K3s Server
+Run the uninstall_k3s_server.sh script to uninstall the k3s server:
+````bash
+sed -i 's/\r$//' uninstall_k3s_server.sh
+chmod +x uninstall_k3s_server.sh
+./uninstall_k3s_server.sh
+````
+### 6. Uninstall K3s Agent
+Run the uninstall_k3s_agent.sh script to uninstall the k3s agent:
+````bash
+sed -i 's/\r$//' uninstall_k3s_agent.sh
+chmod +x uninstall_k3s_agent.sh
+./uninstall_k3s_agent.sh
+````
 
 # License
 
